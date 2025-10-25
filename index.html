@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Let's Talk Digital – Creator Giveaway</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-top: #3f0071;      /* deep purple */
+      --bg-bottom: #ffb400;   /* gold/yellow */
+      --card-bg: #1a1a1aee;   /* dark glass */
+      --accent: #ffb400;
+      --text-light: #fff;
+      --radius-xl: 1.25rem;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at 20% 20%, rgba(255,180,0,0.15) 0%, transparent 60%),
+                  radial-gradient(circle at 80% 30%, rgba(255,180,0,0.07) 0%, transparent 70%),
+                  linear-gradient(to bottom right, var(--bg-top) 0%, #4b008a 30%, #5c009b 50%, #8a2f8f 65%, var(--bg-bottom) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      color: var(--text-light);
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 420px;
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 2rem 1.5rem 1.5rem;
+      position: relative;
+    }
+
+    /* mini speech-bubble badge (swap for real logo if you have it) */
+    .brand-badge {
+      position: absolute;
+      top: -16px;
+      left: 1.5rem;
+      background: linear-gradient(to bottom right, #ffb400 0%, #ff9a00 100%);
+      color: #000;
+      font-weight: 700;
+      font-size: 0.8rem;
+      line-height: 1.2rem;
+      border-radius: 0.6rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      padding: 0.6rem 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+      display: flex;
+      flex-direction: column;
+    }
+    .brand-badge span.big {
+      font-size: 0.9rem;
+      line-height: 1.1rem;
+    }
+
+    header {
+      margin-top: 2rem;
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+
+    header h1 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--text-light);
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    header h1 .highlight {
+      background: var(--accent);
+      color: #000;
+      padding: 0.25rem .5rem;
+      border-radius: .5rem;
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    header p {
+      margin-top: .75rem;
+      font-size: .9rem;
+      line-height: 1.4;
+      color: rgba(255,255,255,0.75);
+      max-width: 90%;
+    }
+
+    form {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .field {
+      display: grid;
+      gap: .5rem;
+    }
+
+    .field label {
+      font-size: .8rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.9);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .field label span.optional {
+      font-weight: 400;
+      font-size: .7rem;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .input-shell {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: .75rem;
+      display: flex;
+      align-items: center;
+      padding: .75rem .9rem;
+      transition: all .15s;
+    }
+
+    .input-shell:focus-within {
+      border-color: var(--accent);
+      box-shadow: 0 0 12px rgba(255,180,0,.5);
+    }
+
+    .input-shell span.prefix {
+      font-size: .8rem;
+      color: rgba(255,255,255,0.6);
+      margin-right: .4rem;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .input-shell input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: .9rem;
+      font-weight: 500;
+      line-height: 1.2rem;
+      color: var(--text-light);
+    }
+
+    .hint {
+      font-size: .7rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.2;
+    }
+
+    button[type="submit"] {
+      appearance: none;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(to right, #ffb400 0%, #ff9a00 100%);
+      color: #000;
+      font-weight: 600;
+      font-size: .95rem;
+      line-height: 1.2rem;
+      padding: .9rem 1rem;
+      border-radius: .8rem;
+      box-shadow: 0 18px 40px rgba(255,153,0,0.4), 0 2px 4px rgba(0,0,0,0.8) inset;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: box-shadow .12s, transform .12s;
+    }
+
+    button[type="submit"]:active {
+      transform: scale(.98);
+      box-shadow: 0 10px 20px rgba(255,153,0,0.3);
+    }
+
+    .consent {
+      margin-top: .5rem;
+      font-size: .7rem;
+      line-height: 1.3;
+      color: rgba(255,255,255,0.45);
+      text-align: center;
+    }
+
+    .footer-note {
+      text-align: center;
+      color: rgba(255,255,255,0.4);
+      font-size: .7rem;
+      margin-top: 1.5rem;
+    }
+
+    @media(min-width:480px){
+      header h1 { font-size: 1.4rem; }
+      header h1 .highlight { font-size: 1.05rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="wrapper">
+    <!-- Replace with your actual logo later -->
+    <div class="brand-badge">
+      <span class="big">LET'S</span>
+      <span class="big">TALK</span>
+      <span class="big">DIGITAL</span>
+    </div>
+
+    <header>
+      <h1>
+        Creator Access List
+        <span class="highlight">Giveaway Entry</span>
+      </h1>
+      <p>
+        Drop your details to join the Let's Talk Digital giveaway list.
+        We’ll DM winners their digital prizes.
+      </p>
+    </header>
+
+    <!-- you can set action="https://your-api.com/signup" and method="POST" later -->
+    <form action="" method="">
+      <div class="field">
+        <label for="full_name">Full name</label>
+        <div class="input-shell">
+          <input id="full_name" name="full_name" type="text" placeholder="eg. Ama Mensah" required />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <div class="input-shell">
+          <input id="email" name="email" type="email" placeholder="you@example.com" required />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="phone">Phone number</label>
+        <div class="input-shell">
+          <span class="prefix">+233</span>
+          <input id="phone" name="phone" type="tel" placeholder="55 123 4567" required />
+        </div>
+        <div class="hint">Use a number we can reach on WhatsApp for prize delivery.</div>
+      </div>
+
+      <div class="field">
+        <label for="tiktok">
+          TikTok username
+          <span class="optional">(no @ needed)</span>
+        </label>
+        <div class="input-shell">
+          <span class="prefix">@</span>
+          <input id="tiktok" name="tiktok" type="text" placeholder="letstalkdigital" required />
+        </div>
+        <div class="hint">We'll verify reach and send digital gifts via DM.</div>
+      </div>
+
+      <button type="submit">Join the Giveaway</button>
+
+      <div class="consent">
+        By submitting, you agree we can contact you about prizes,
+        brand offers and future creator campaigns.
+      </div>
+    </form>
+
+    <div class="footer-note">
+      Powered by Let's Talk Digital
+    </div>
+  </main>
+
+</body>
+</html>
